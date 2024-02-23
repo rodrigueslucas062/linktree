@@ -23,15 +23,19 @@ const icons = {
 const Links = ({ link, titulo, icone }) => {
   const Icone = icone && icons[icone];
   const [isHovered, setIsHovered] = useState(false);
-
+  const shadowStyle = {
+    boxShadow: isHovered ? "4px 4px 0px rgba(0, 0, 0, 0.75)" : "8px 8px 0px rgba(0, 0, 0, 0.75)"
+  };
+  
   return (
     <Link
       href={link}
       className="rounded-lg cursor-pointer inline-block m-1 p-3 w-full lg:w-1/3 relative transition-none bg-white border-4 border-zinc-900 text-zinc-900 hover:translate-y-1"
       target="_blank"
-      style={{ boxShadow: "8px 8px 0px rgba(0, 0, 0, 0.75)" }}
+      style={shadowStyle}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)} >
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="flex items-center justify-between">
         {Icone && <Icone />}
         <span className="font-semibold">{titulo}</span>
