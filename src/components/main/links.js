@@ -30,7 +30,7 @@ const Links = ({ link, titulo, icone }) => {
   return (
     <Link
       href={link}
-      className="rounded-lg cursor-pointer inline-block m-1 p-3 w-full lg:w-1/3 relative transition-none bg-white border-4 border-zinc-900 text-zinc-900 hover:translate-y-1"
+      className="rounded-lg cursor-pointer inline-block m-1 p-3 w-full lg:w-1/3 relative transition ease-in-out delay-75 bg-white border-4 border-zinc-900 text-zinc-900 hover:translate-y-1"
       target="_blank"
       style={shadowStyle}
       onMouseEnter={() => setIsHovered(true)}
