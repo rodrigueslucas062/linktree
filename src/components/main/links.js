@@ -36,10 +36,12 @@ const Links = ({ link, titulo, icone }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between group">
         {Icone && <Icone />}
         <span className="font-semibold">{titulo}</span>
-        <MoreHorizontal />
+        <div className="lg:invisible group-hover:visible bg-white hover:bg-gray-200 p-2 rounded-full">
+          <MoreHorizontal size={18} />
+        </div>
       </div>
     </Link>
   );
