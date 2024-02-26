@@ -1,8 +1,13 @@
-import { Github, Linkedin, MoreHorizontal } from "lucide-react";
+import { FileCode, Github, Linkedin, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 const links = [
+  {
+    link: "https://lucas-rodrigues.vercel.app/",
+    titulo: "Portifólio",
+    icone: "Portifolio",
+  },
   {
     link: "https://github.com/rodrigueslucas062",
     titulo: "Github",
@@ -16,6 +21,7 @@ const links = [
 ];
 
 const icons = {
+  Portifolio: FileCode,
   Github: Github,
   LinkedIn: Linkedin,
 };
