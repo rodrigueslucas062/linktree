@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image"
 import Perfil from '../../../public/images/perfil.jpeg'
-import { ChevronRight, MessageCircle, MoreHorizontal, X } from "lucide-react"
+import { ChevronRight, FlaskConical, MessageCircle, MoreHorizontal, Share2, X } from "lucide-react"
 import { useEffect, useState } from "react"
 
 const Navbar = () => {
@@ -35,17 +35,27 @@ const Navbar = () => {
 
                     <Dialog.Portal>
                         <Dialog.DialogOverlay className="inset-0 fixed bg-black/20">
-                            <Dialog.DialogContent className="fixed z-10 inset-0 md:inset-auto max-md:top-1/2 lg:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] w-full md:h-[60vh] bg-gray-200 rounded-3xl flex flex-col outline-none overflow-hidden">
+                            <Dialog.DialogContent className="fixed z-10 inset-0 md:inset-auto max-md:top-2/3 lg:top-1/3 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] w-full md:h-[60vh] bg-gray-200 rounded-t-3xl flex flex-col outline-none overflow-hidden">
                                 <Dialog.Close className="hover:bg-gray-300 p-2 rounded-full absolute top-2 right-2">
                                     <X className="size-5" />
                                 </Dialog.Close>
                                 <div className="flex items-center justify-center gap-3 p-5">
-                                    <div className="rounded-lg mt-8 inline-block m-1 p-3 w-5/6 relative bg-white border-4 border-zinc-900 text-zinc-900">
-                                        <div className="flex items-center justify-between">
-                                            <MessageCircle />
-                                            <span>Compartilhar no WhatsApp</span>
-                                            <div className="hover:bg-gray-300 rounded-full p-2">
-                                                <ChevronRight />
+                                    <div className="rounded-lg mt-8 inline-block m-1 p-3 w-5/6 relative text-zinc-900">
+                                        <div className="flex flex-col items-center justify-center">
+                                            <span className="font-semibold text-zinc-900 text-lg">Lucas Rodrigues</span>
+                                            <div className="flex mt-6 items-center justify-around gap-6">
+                                                <Share2 />
+                                                <span>Compartilhar esse projeto</span>
+                                                <div className="hover:bg-zinc-400 hover:text-zinc-200 p-2 rounded-full">
+                                                    <ChevronRight />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="relative flex justify-center items-center">
+                                            <div className="fixed flex bottom-0">
+                                                <span className="text-sm text-zinc-900 font-semibold">Made for </span>
+                                                <FlaskConical className="text-lime-500"/>{" "}
+                                                <span className="text-sm text-zinc-900 font-semibold">By Lucas</span>
                                             </div>
                                         </div>
                                     </div>
