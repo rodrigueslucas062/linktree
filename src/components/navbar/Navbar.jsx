@@ -3,9 +3,11 @@ import Image from "next/image"
 import Perfil from '../../../public/images/perfil.jpeg'
 import { ChevronRight, FlaskConical, MessageCircle, MoreHorizontal, Share2, X } from "lucide-react"
 import { useEffect, useState } from "react"
+import { toast } from "sonner";
 
 const Navbar = () => {
     const [isMenuVisible, setIsMenuVisible] = useState(false);
+    const [copied, setCopied] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,6 +24,16 @@ const Navbar = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    const handleCopyLink = () => {
+        navigator.clipboard.writeText(window.location.href)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+        toast.success('Link copiado', {
+          position: 'bottom-center',
+          duration: 2000,
+        })
+      }
 
     return (
         <nav className="flex w-full justify-center fixed">
@@ -46,7 +58,7 @@ const Navbar = () => {
                                             <div className="flex mt-6 items-center justify-around gap-6">
                                                 <Share2 />
                                                 <span>Compartilhar esse projeto</span>
-                                                <div className="hover:bg-zinc-400 hover:text-zinc-200 p-2 rounded-full">
+                                                <div className="hover:bg-zinc-400 hover:text-zinc-200 p-2 rounded-full" onClick={handleCopyLink}>
                                                     <ChevronRight />
                                                 </div>
                                             </div>

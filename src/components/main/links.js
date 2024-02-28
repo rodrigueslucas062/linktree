@@ -1,6 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { ChevronRight, FileCode, Github, Linkedin, MessageCircle, MoreHorizontal, X } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const links = [
   {
@@ -32,11 +33,23 @@ const Links = ({ link, titulo, icone }) => {
   const shadowStyle = {
     boxShadow: isHovered ? "4px 4px 0px rgba(0, 0, 0, 0.75)" : "8px 8px 0px rgba(0, 0, 0, 0.75)"
   };
+  const [copied, setCopied] = useState(false)
+
 
   const handleLinkClick = (e) => {
     if (!e.defaultPrevented) {
       window.open(link, "_blank")
     }
+  }
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+    toast.success('Link copiado', {
+      position: 'bottom-center',
+      duration: 2000,
+    })
   }
 
   return (
@@ -66,7 +79,7 @@ const Links = ({ link, titulo, icone }) => {
             </Dialog.Close>
             <div className="flex items-center justify-center gap-3 p-5">
               <div className="rounded-lg mt-8 inline-block m-1 p-3 w-5/6 relative bg-white border-4 border-zinc-900 text-zinc-900">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between" onClick={handleCopyLink}>
                   <MessageCircle />
                   <span>Compartilhar no WhatsApp</span>
                   <div className="hover:bg-gray-300 rounded-full p-2">
