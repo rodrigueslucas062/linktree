@@ -1,5 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { ChevronRight, FileCode, Github, Linkedin, MessageCircle, MoreHorizontal, X } from "lucide-react";
+import { ChevronRight, FileCode, FlaskConical, Github, Linkedin, MessageCircle, MoreHorizontal, Share2, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -35,15 +35,15 @@ const Links = ({ link, titulo, icone }) => {
   };
   const [copied, setCopied] = useState(false)
 
-
   const handleLinkClick = (e) => {
     if (!e.defaultPrevented) {
       window.open(link, "_blank")
     }
   }
 
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href)
+  const handleCopyLink = (e) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(link)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
     toast.success('Link copiado', {
@@ -73,17 +73,22 @@ const Links = ({ link, titulo, icone }) => {
 
       <Dialog.Portal>
         <Dialog.DialogOverlay className="inset-0 fixed bg-black/20">
-        <Dialog.DialogContent className="fixed z-10 inset-0 md:inset-auto max-md:top-1/2 lg:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] w-full md:h-[60vh] bg-gray-200 max-md:rounded-t-3xl lg:rounded-3xl flex flex-col outline-none overflow-hidden">
+          <Dialog.DialogContent className="fixed z-10 inset-0 md:inset-auto max-md:top-3/4 lg:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[640px] w-full md:h-[60vh] bg-gray-200 max-md:rounded-t-3xl lg:rounded-3xl flex flex-col outline-none overflow-hidden">
             <Dialog.Close className="hover:bg-gray-300 p-2 rounded-full absolute top-2 right-2">
               <X className="size-5" />
             </Dialog.Close>
-            <div className="flex items-center justify-center gap-3 p-5">
-              <div className="rounded-lg mt-8 inline-block m-1 p-3 w-5/6 relative bg-white border-4 border-zinc-900 text-zinc-900">
-                <div className="flex items-center justify-between" onClick={handleCopyLink}>
-                  <MessageCircle />
-                  <span>Compartilhar no WhatsApp</span>
-                  <div className="hover:bg-gray-300 rounded-full p-2">
-                    <ChevronRight />
+            <div className="flex items-center justify-center gap-3 p-4">
+              <div className="rounded-lg mt-8 inline-block w-5/6 relative text-zinc-900">
+                <div className="flex flex-col items-center justify-center">
+                  <span className="font-semibold text-zinc-900 text-lg">
+                    Compartilhar links
+                  </span>
+                  <div className="flex mt-6 items-center justify-around gap-6">
+                    <Share2 />
+                    <span>Compartilhar este link</span>
+                    <div className="hover:bg-zinc-400 hover:text-zinc-200 p-2 rounded-full" onClick={handleCopyLink}>
+                      <ChevronRight />
+                    </div>
                   </div>
                 </div>
               </div>
